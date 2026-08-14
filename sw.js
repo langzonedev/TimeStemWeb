@@ -1,4 +1,4 @@
-const CACHE='timestem-web-v6';
+const CACHE='timestem-web-v7';
 const ASSETS=['./','./index.html','./styles.css','./ux.css','./app.js','./ux.js','./manifest.webmanifest'];
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)))});
 self.addEventListener('activate',event=>event.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))])));
