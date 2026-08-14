@@ -6,6 +6,8 @@ TimeStem Web is the public browser/PWA front-end for the TimeStem product family
 
 **tap → timestamp/timer → timeline → summary**
 
+https://langzonedev.github.io/TimeStemWeb/
+
 ## Variants
 
 - **Family** — caregiving and household activity tracking
