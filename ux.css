@@ -1,1 +1,19 @@
 .tap-feedback{position:fixed;z-index:50;left:50%;bottom:calc(var(--nav-h) + 24px + env(safe-area-inset-bottom));transform:translate(-50%,14px) scale(.98);display:flex;align-items:center;gap:9px;max-width:calc(100vw - 32px);padding:11px 15px;border-radius:15px;background:color-mix(in srgb,var(--text) 92%,transparent);color:var(--surface);box-shadow:0 12px 34px rgba(0,0,0,.2);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;backdrop-filter:blur(12px);font-size:.85rem}.tap-feedback span{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:.75rem}.tap-feedback strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tap-feedback.show{opacity:1;transform:translate(-50%,0) scale(1)}
+
+/* Keep decorative activity-card artwork behind content and out of the copy area. */
+.action-btn::after{right:-34px!important;bottom:-42px!important;width:78px!important;height:78px!important;opacity:.18!important;z-index:0!important}
+.action-btn>.activity-icon,.action-btn>.action-copy,.action-btn>.running-badge{z-index:2!important}
+.action-btn .action-copy{max-width:100%;padding-right:2px}
+.action-btn .action-copy strong,.action-btn .action-copy small{position:relative;z-index:2}
+
+/* Timer completion is a stop action, not a confirmation action. */
+.finish-timer{min-width:86px;justify-content:center;background:color-mix(in srgb,var(--danger) 88%,#0000)!important;color:#fff!important;box-shadow:0 5px 14px color-mix(in srgb,var(--danger) 22%,transparent)}
+.finish-timer svg{display:none!important}
+.finish-timer::before{content:"";width:10px;height:10px;border-radius:2px;background:currentColor;display:block;flex:0 0 auto}
+.finish-timer span{font-weight:800}
+
+@media(max-width:520px){
+  .action-btn::after{right:-30px!important;bottom:-38px!important;width:68px!important;height:68px!important;opacity:.13!important}
+  .action-btn .action-copy{padding-right:0}
+  .finish-timer{min-width:82px;padding-left:11px;padding-right:11px}
+}
