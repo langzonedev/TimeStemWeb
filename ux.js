@@ -1,1 +1,13 @@
-(()=>{const PALETTES={family:{accent:'#b45f86',soft:'#f8e8ef'},enterprise:{accent:'#3d648f',soft:'#e7eef7'},sport:{accent:'#35665a',soft:'#e5f0ec'}};function applyPalette(v){const p=PALETTES[v]||PALETTES.enterprise;document.documentElement.style.setProperty('--accent',p.accent);document.body.style.setProperty('--soft',p.soft);const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',p.accent)}function activeVariant(){return localStorage.getItem('timestem.variant')||'enterprise'}function feedback(message){document.querySelector('.tap-feedback')?.remove();const el=document.createElement('div');el.className='tap-feedback';el.textContent='✓ '+message;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),180)},1250)}document.addEventListener('click',event=>{const switchButton=event.target.closest('.variant-switcher button');if(switchButton){setTimeout(()=>applyPalette(switchButton.dataset.variant),0);return}const action=event.target.closest('.action-btn');if(!action)return;const hint=[...action.querySelectorAll('span')].at(-1)?.textContent||'';if(hint.includes('Tap to record')){const label=action.querySelector('strong')?.textContent||'Activity';setTimeout(()=>feedback(label+' recorded'),30)}});window.addEventListener('storage',()=>applyPalette(activeVariant()));document.addEventListener('DOMContentLoaded',()=>applyPalette(activeVariant()));})();
+(()=>{
+  const PALETTES={family:'#b45f86',enterprise:'#3d648f',sport:'#35665a'};
+  function activeVariant(){return localStorage.getItem('timestem.variant')||'enterprise'}
+  function applyChrome(){const v=activeVariant();document.body.dataset.variant=v;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',PALETTES[v]||PALETTES.enterprise)}
+  function feedback(message){document.querySelector('.tap-feedback')?.remove();const el=document.createElement('div');el.className='tap-feedback';el.innerHTML=`<span>✓</span><strong>${message}</strong>`;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),190)},1350)}
+  document.addEventListener('click',event=>{
+    const switchButton=event.target.closest('.variant-switcher button');if(switchButton){setTimeout(applyChrome,0);return}
+    const action=event.target.closest('.action-btn');if(!action)return;
+    const hint=action.querySelector('.action-copy small')?.textContent||'';
+    if(hint.includes('Timestamp')){const label=action.querySelector('strong')?.textContent||'Activity';setTimeout(()=>feedback(`${label} recorded`),30)}
+  });
+  window.addEventListener('storage',applyChrome);document.addEventListener('DOMContentLoaded',applyChrome);applyChrome();
+})();
