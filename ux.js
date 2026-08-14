@@ -3,11 +3,23 @@
   function activeVariant(){return localStorage.getItem('timestem.variant')||'enterprise'}
   function applyChrome(){const v=activeVariant();document.body.dataset.variant=v;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',PALETTES[v]||PALETTES.enterprise)}
   function feedback(message){document.querySelector('.tap-feedback')?.remove();const el=document.createElement('div');el.className='tap-feedback';el.innerHTML=`<span>✓</span><strong>${message}</strong>`;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),190)},1350)}
+  function normaliseTimerStops(root=document){
+    root.querySelectorAll?.('.finish-timer').forEach(button=>{
+      button.setAttribute('aria-label','Stop timer');
+      button.setAttribute('title','Stop timer');
+      const label=button.querySelector('span');
+      if(label&&label.textContent!=='Stop')label.textContent='Stop';
+    });
+  }
   document.addEventListener('click',event=>{
     const switchButton=event.target.closest('.variant-switcher button');if(switchButton){setTimeout(applyChrome,0);return}
     const action=event.target.closest('.action-btn');if(!action)return;
     const hint=action.querySelector('.action-copy small')?.textContent||'';
     if(hint.includes('Timestamp')){const label=action.querySelector('strong')?.textContent||'Activity';setTimeout(()=>feedback(`${label} recorded`),30)}
   });
-  window.addEventListener('storage',applyChrome);document.addEventListener('DOMContentLoaded',applyChrome);applyChrome();
+  const observer=new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1){if(node.matches?.('.finish-timer'))normaliseTimerStops(node.parentElement||document);else normaliseTimerStops(node)}})));
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+  window.addEventListener('storage',applyChrome);
+  document.addEventListener('DOMContentLoaded',()=>{applyChrome();normaliseTimerStops()});
+  applyChrome();normaliseTimerStops();
 })();
