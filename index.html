@@ -10,17 +10,19 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="ux.css">
 </head>
-<body>
+<body data-variant="enterprise">
   <div class="app-shell">
     <header class="topbar">
-      <div>
-        <div class="eyebrow">TIMESTEM</div>
+      <div class="brand-block">
+        <div class="eyebrow brand-mark">TIMESTEM</div>
         <h1 id="page-title">Every tap builds your day.</h1>
       </div>
-      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">◐</button>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle light and dark theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+      </button>
     </header>
 
-    <nav class="variant-switcher" aria-label="TimeStem variant">
+    <nav class="variant-switcher" aria-label="TimeStem mode">
       <button data-variant="family">Family</button>
       <button data-variant="enterprise">Enterprise</button>
       <button data-variant="sport">Sport</button>
@@ -29,10 +31,10 @@
     <main id="main"></main>
 
     <nav class="bottom-nav" aria-label="Main navigation">
-      <button data-view="today">Today</button>
-      <button data-view="log">Log</button>
-      <button data-view="summary">Summary</button>
-      <button data-view="settings">Settings</button>
+      <button data-view="today"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3l8.5 7.5M5.5 9.5V21h13V9.5M9.5 21v-6h5v6"/></svg><span>Today</span></button>
+      <button data-view="log"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10M7 8h10M7 12h6M5 3v18M5 17h12M17 14v6M14 17h6"/></svg><span>Timeline</span></button>
+      <button data-view="summary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V4M19 20v-7"/></svg><span>Summary</span></button>
+      <button data-view="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 13.5v-3l-2-.6a7 7 0 0 0-.8-1.9l1-1.8-2.1-2.1-1.8 1A7 7 0 0 0 10.5 4L10 2H7l-.6 2a7 7 0 0 0-1.9.8l-1.8-1L.6 5.9l1 1.8A7 7 0 0 0 .8 10.5L-1 11v3l2 .6a7 7 0 0 0 .8 1.9l-1 1.8 2.1 2.1 1.8-1a7 7 0 0 0 1.9.8l.6 2h3l.6-2a7 7 0 0 0 1.9-.8l1.8 1 2.1-2.1-1-1.8a7 7 0 0 0 .8-1.9Z" transform="translate(2.5 -0.1) scale(.82)"/></svg><span>Settings</span></button>
     </nav>
   </div>
 
@@ -44,7 +46,7 @@
     </section>
     <section id="active-wrap"></section>
     <section>
-      <div class="section-head"><span>QUICK TAP</span><small>Tap once, then get back to it.</small></div>
+      <div class="section-head"><span>QUICK TAP</span><small>One tap, then get back to it.</small></div>
       <div id="action-grid" class="action-grid"></div>
     </section>
     <section id="latest-wrap"></section>
