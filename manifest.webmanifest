@@ -1,0 +1,10 @@
+{
+  "name": "TimeStem",
+  "short_name": "TimeStem",
+  "description": "One-tap activity tracking across family, work and sport.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f4fa",
+  "theme_color": "#6f4ea1",
+  "icons": []
+}
