@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#6f4ea1">
+  <meta name="description" content="TimeStem — one-tap activity tracking for family, work and sport.">
+  <title>TimeStem Web</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">TIMESTEM</div>
+        <h1 id="page-title">Every tap builds your day.</h1>
+      </div>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">◐</button>
+    </header>
+
+    <nav class="variant-switcher" aria-label="TimeStem variant">
+      <button data-variant="family">Family</button>
+      <button data-variant="enterprise">Enterprise</button>
+      <button data-variant="sport">Sport</button>
+    </nav>
+
+    <main id="main"></main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button data-view="today">Today</button>
+      <button data-view="log">Log</button>
+      <button data-view="summary">Summary</button>
+      <button data-view="settings">Settings</button>
+    </nav>
+  </div>
+
+  <template id="today-template">
+    <section class="hero-card">
+      <div class="eyebrow" id="variant-label"></div>
+      <h2 id="greeting"></h2>
+      <p id="prompt"></p>
+    </section>
+    <section id="active-wrap"></section>
+    <section>
+      <div class="section-head"><span>QUICK TAP</span><small>Tap once, then get back to it.</small></div>
+      <div id="action-grid" class="action-grid"></div>
+    </section>
+    <section id="latest-wrap"></section>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
